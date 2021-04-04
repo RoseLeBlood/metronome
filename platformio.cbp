@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Metronome" />
+		<Option makefile_is_custom="1" />
+		<Option pch_mode="2" />
+		<Option compiler="null" />
+		<MakeCommands>
+			<Build command="/usr/bin/pio -f -c codeblocks run" />
+			<CompileFile command="/usr/bin/pio -f -c codeblocks run" />
+			<Clean command="/usr/bin/pio -f -c codeblocks run -t clean" />
+			<DistClean command="/usr/bin/pio -f -c codeblocks run -t clean" />
+			<AskRebuildNeeded command="1" />
+			<SilentBuild command="/usr/bin/pio -f -c codeblocks run &gt; $(CMD_NULL)" />
+		</MakeCommands>
+		<Build>
+			<Target title="Debug">
+				<Option type="4" />
+				<Option compiler="null" />
+				<Option parameters="-f -c codeblocks run -t upload" />
+				<Option host_application="/usr/bin/pio" />
+				<Option run_host_application_in_terminal="1" />
+				<Compiler>
+					<Add directory="include" />
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/pio -f -c codeblocks run" />
+					<CompileFile command="/usr/bin/pio -f -c codeblocks run" />
+					<Clean command="/usr/bin/pio -f -c codeblocks run -t clean" />
+					<DistClean command="/usr/bin/pio -f -c codeblocks run -t clean" />
+					<AskRebuildNeeded command="1" />
+					<SilentBuild command="/usr/bin/pio -f -c codeblocks run &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+			<Target title="Release">
+				<Option type="4" />
+				<Option compiler="null" />
+				<Option parameters="-f -c codeblocks run -t upload" />
+				<Option host_application="/usr/bin/pio" />
+				<Option run_host_application_in_terminal="1" />
+				<Compiler>
+					<Add directory="include" />
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/pio -f -c codeblocks run" />
+					<CompileFile command="/usr/bin/pio -f -c codeblocks run" />
+					<Clean command="/usr/bin/pio -f -c codeblocks run -t clean" />
+					<DistClean command="/usr/bin/pio -f -c codeblocks run -t clean" />
+					<AskRebuildNeeded command="1" />
+					<SilentBuild command="/usr/bin/pio -f -c codeblocks run &gt; $(CMD_NULL)" />
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-D_GNU_SOURCE" />
+			<Add option='-DIDF_VER=&quot;3.40200.210118&quot;' />
+			<Add option="-DESP_PLATFORM" />
+			<Add option="-DPLATFORMIO=50100" />
+			<Add option="-DARDUINO_ESP32_DEV" />
+			<Add directory="/home/ambersophia/Dokumente/PlatformIO/Projects/Metronome/include" />
+			<Add directory="/home/ambersophia/Dokumente/PlatformIO/Projects/Metronome/src" />
+			<Add directory="/home/ambersophia/Dokumente/PlatformIO/Projects/Metronome/.pio/libdeps/esp32doit-devkit-v1/mini Thread/include" />
+			<Add directory="/home/ambersophia/Dokumente/PlatformIO/Projects/Metronome/.pio/libdeps/esp32doit-devkit-v1/mini Thread/src" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/xtensa/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/xtensa/esp32/include" />
+			<Add directory="/home/ambersophia/Dokumente/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/config" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/newlib/platform_include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/freertos/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/freertos/xtensa/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/heap/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/log/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/lwip/include/apps" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/lwip/include/apps/sntp" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/lwip/lwip/src/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/lwip/port/esp32/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/lwip/port/esp32/include/arch" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/soc/src/esp32" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/soc/src/esp32/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/soc/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_rom/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_common/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_system/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp32/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/driver/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/driver/esp32/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_ringbuf/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/efuse/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/efuse/esp32/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/espcoredump/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_timer/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_ipc/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/soc/soc/esp32/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/soc/soc/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/soc/soc/esp32/private_include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/vfs/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_wifi/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_wifi/esp32/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_event/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_netif/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_eth/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/tcpip_adapter/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/app_trace/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/mbedtls/port/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/mbedtls/mbedtls/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/mbedtls/esp_crt_bundle/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/bootloader_support/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/app_update/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/spi_flash/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/wpa_supplicant/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/wpa_supplicant/port/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/wpa_supplicant/include/esp_supplicant" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/nvs_flash/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/pthread/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/perfmon/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/asio/asio/asio/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/asio/port/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/cbor/port/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/coap/port/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/coap/port/include/coap" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/coap/libcoap/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/coap/libcoap/include/coap2" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/console" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/nghttp/port/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/nghttp/nghttp2/lib/includes" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp-tls" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_adc_cal/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_gdbstub/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_hid/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/tcp_transport/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_http_client/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_http_server/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_https_ota/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/protobuf-c/protobuf-c" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/protocomm/include/common" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/protocomm/include/security" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/protocomm/include/transports" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/mdns/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_local_ctrl/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/sdmmc/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_serial_slave_link/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/esp_websocket_client/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/expat/expat/expat/lib" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/expat/port/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/wear_levelling/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/fatfs/diskio" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/fatfs/vfs" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/fatfs/src" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/freemodbus/common/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/idf_test/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/idf_test/include/esp32" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/jsmn/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/json/cJSON" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/libsodium/libsodium/src/libsodium/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/libsodium/port_include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/mqtt/esp-mqtt/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/openssl/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/spiffs/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/ulp/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/unity/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/unity/unity/src" />
+			<Add directory="/home/ambersophia/.platformio/packages/framework-espidf/components/wifi_provisioning/include" />
+			<Add directory="/home/ambersophia/Dokumente/PlatformIO/Projects/Metronome/.pio/libdeps/esp32doit-devkit-v1/mini Thread@src-23e18b3f51968b140affae29677868f1/include" />
+			<Add directory="/home/ambersophia/Dokumente/PlatformIO/Projects/Metronome/.pio/libdeps/esp32doit-devkit-v1/mini Thread@src-23e18b3f51968b140affae29677868f1/src" />
+			<Add directory="/home/ambersophia/Dokumente/PlatformIO/Projects/Metronome/.pio/libdeps/esp32doit-devkit-v1/mini Thread@src-55bfd6efa7c379f18b1ab4c3cc122e7b/include" />
+			<Add directory="/home/ambersophia/Dokumente/PlatformIO/Projects/Metronome/.pio/libdeps/esp32doit-devkit-v1/mini Thread@src-55bfd6efa7c379f18b1ab4c3cc122e7b/src" />
+			<Add directory="/home/ambersophia/.platformio/lib/mini Thread/include" />
+			<Add directory="/home/ambersophia/.platformio/lib/mini Thread/src" />
+			<Add directory="/home/ambersophia/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include/c++/8.4.0" />
+			<Add directory="/home/ambersophia/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include/c++/8.4.0/xtensa-esp32-elf" />
+			<Add directory="/home/ambersophia/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/8.4.0/include-fixed" />
+			<Add directory="/home/ambersophia/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/8.4.0/include" />
+			<Add directory="/home/ambersophia/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include" />
+		</Compiler>
+		<Unit filename="include/audio_chunk.h" />
+		<Unit filename="include/audio_network_buffer.h" />
+		<Unit filename="include/basic_wifi.h" />
+		<Unit filename="include/basic_wifi_ap.h" />
+		<Unit filename="include/config.h" />
+		<Unit filename="include/dram_task.h" />
+		<Unit filename="include/hash.h" />
+		<Unit filename="include/if_interface.h" />
+		<Unit filename="include/ip_address.h" />
+		<Unit filename="include/ip_endpoint.h" />
+		<Unit filename="include/ringbuf.h" />
+		<Unit filename="include/socket.h" />
+		<Unit filename="include/udp_client.h" />
+		<Unit filename="make.log" />
+		<Unit filename="platformio.ini" />
+		<Unit filename="sdkconfig" />
+		<Unit filename="src/CMakeLists.txt" />
+		<Unit filename="src/audio_chunk.cpp" />
+		<Unit filename="src/audio_network_buffer.cpp" />
+		<Unit filename="src/basic_wifi.cpp" />
+		<Unit filename="src/basic_wifi_ap.cpp" />
+		<Unit filename="src/dram_task.cpp" />
+		<Unit filename="src/hash_esp32.cpp" />
+		<Unit filename="src/if_interface.cpp" />
+		<Unit filename="src/ip_address.cpp" />
+		<Unit filename="src/ip_endpoint.cpp" />
+		<Unit filename="src/main.cpp" />
+		<Unit filename="src/ringbuf.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="src/socket.cpp" />
+		<Unit filename="src/udp_client.cpp" />
+		<Extensions />
+	</Project>
+</CodeBlocks_project_file>

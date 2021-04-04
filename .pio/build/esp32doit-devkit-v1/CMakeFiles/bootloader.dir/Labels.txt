@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/CMakeFiles/bootloader
+/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/CMakeFiles/bootloader.rule
+/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/CMakeFiles/bootloader-complete.rule
+/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule
+/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule

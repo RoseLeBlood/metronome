@@ -1,0 +1,20 @@
+{
+    "project_name":       "bootloader",
+    "project_path":       "/home/ambersophia/.platformio/packages/framework-espidf/components/bootloader/subproject",
+    "build_dir":          "/home/ambersophia/Documents/PlatformIO/Projects/Metronome/.pio/build/esp32doit-devkit-v1/bootloader",
+    "config_file":        "/home/ambersophia/Documents/PlatformIO/Projects/Metronome/sdkconfig",
+    "config_defaults":    "",
+    "app_elf":            "bootloader.elf",
+    "app_bin":            "bootloader.bin",
+    "git_revision":       "3.40200.210118",
+    "target":             "esp32",
+    "phy_data_partition": "",
+    "monitor_baud" :      "115200",
+    "monitor_toolprefix": "xtensa-esp32-elf-",
+    "config_environment" : {
+        "COMPONENT_KCONFIGS" : "/home/ambersophia/.platformio/packages/framework-espidf/components/efuse/Kconfig;/home/ambersophia/.platformio/packages/framework-espidf/components/esp32/Kconfig;/home/ambersophia/.platformio/packages/framework-espidf/components/esp_common/Kconfig;/home/ambersophia/.platformio/packages/framework-espidf/components/log/Kconfig;/home/ambersophia/.platformio/packages/framework-espidf/components/spi_flash/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "/home/ambersophia/.platformio/packages/framework-espidf/components/bootloader/Kconfig.projbuild;/home/ambersophia/.platformio/packages/framework-espidf/components/esptool_py/Kconfig.projbuild;/home/ambersophia/.platformio/packages/framework-espidf/components/partition_table/Kconfig.projbuild"
+    },
+    "build_components" : [ "bootloader", "bootloader_support", "efuse", "esp32", "esp_common", "esp_rom", "esptool_py", "log", "main", "micro-ecc", "partition_table", "soc", "spi_flash", "xtensa", "" ],
+    "build_component_paths" : [ "/home/ambersophia/.platformio/packages/framework-espidf/components/bootloader", "/home/ambersophia/.platformio/packages/framework-espidf/components/bootloader_support", "/home/ambersophia/.platformio/packages/framework-espidf/components/efuse", "/home/ambersophia/.platformio/packages/framework-espidf/components/esp32", "/home/ambersophia/.platformio/packages/framework-espidf/components/esp_common", "/home/ambersophia/.platformio/packages/framework-espidf/components/esp_rom", "/home/ambersophia/.platformio/packages/framework-espidf/components/esptool_py", "/home/ambersophia/.platformio/packages/framework-espidf/components/log", "/home/ambersophia/.platformio/packages/framework-espidf/components/bootloader/subproject/main", "/home/ambersophia/.platformio/packages/framework-espidf/components/bootloader/subproject/components/micro-ecc", "/home/ambersophia/.platformio/packages/framework-espidf/components/partition_table", "/home/ambersophia/.platformio/packages/framework-espidf/components/soc", "/home/ambersophia/.platformio/packages/framework-espidf/components/spi_flash", "/home/ambersophia/.platformio/packages/framework-espidf/components/xtensa", "" ]
+}

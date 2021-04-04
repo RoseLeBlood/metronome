@@ -1,0 +1,34 @@
+#!/bin/sh
+prefix=/opt
+
+for arg in "$@"; do
+    case "$arg" in
+    --prefix=*)
+        prefix=`echo $arg | sed 's/--prefix=//'`
+        ;;
+    --clean)
+        rm Makefile &> /dev/null
+        rm -r release/* &> /dev/null
+        exit 0
+        ;;
+    --help)
+        echo 'usage: ./configure [options]'
+        echo 'options:'
+        echo '  --prefix=<path>: installation prefix'
+        echo '  --clean: remove Makefile and clean'
+        echo 'all invalid options are silently ignored'
+        exit 0
+        ;;
+    esac
+done
+
+jsondata=$(cat library.json)
+LIB_VERSION=$(echo "$jsondata"|grep -w \"version\" |tail -1 | cut -d\" -f4)
+
+echo 'generating makefile ...'
+echo "PREFIX = $prefix" > Makefile
+echo "PREFIX = $prefix" 
+echo "VERSION = $LIB_VERSION" >> Makefile
+echo "VERSION = $LIB_VERSION"
+cat Makefile.in >> Makefile
+echo 'configuration complete, type make to build.'
