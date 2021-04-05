@@ -10,10 +10,9 @@ namespace metronome {
 
      : mn::basic_task("dram_task", mn::basic_task::PriorityNormal, 4096),
        m_ip(endpoint.get_ip()),
-       m_bIsudpLite(udpLite),
        m_bufferRef(buffer) {
 
-       m_udpClient = new udp_client(endpoint);
+       m_udpClient = new udp_client(endpoint, udpLite);
        m_udpClient->setup_multicast(use_multicast);
     }
 
@@ -54,7 +53,7 @@ namespace metronome {
     }
 
      void*  dram_task::on_task() {
-        if(!m_udpClient->connect(m_bIsudpLite)) return NULL;
+        if(!m_udpClient->connect()) return NULL;
         if(m_udpClient->is_multicast()) {
             m_udpClient->join_multicast_group(m_ip);
         }

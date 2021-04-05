@@ -7,9 +7,18 @@
 
 #include <lwip/api.h>
 #include <lwip/sockets.h>
+#include <lwip/udp.h>
 
 #include <mn_config.hpp>
 #include <mn_autolock.hpp>
+
+#ifndef UDPLITE_SEND_CSCOV
+#define UDPLITE_SEND_CSCOV 0x01
+#endif // UDPLITE_SEND_CSCOV
+
+#ifndef UDPLITE_RECV_CSCOV
+#define UDPLITE_RECV_CSCOV 0x02
+#endif // UDPLITE_RECV_CSCOV
 
 namespace metronome {
     class socket {
@@ -70,6 +79,10 @@ namespace metronome {
             reuse_addr = SO_REUSEADDR,
             sendbuffer = SO_SNDBUF,
             recivebuffer = SO_RCVBUF,
+        #if LWIP_UDP && LWIP_UDPLITE
+            udplite_send_cscov = UDPLITE_SEND_CSCOV,
+            udplite_recv_cscov = UDPLITE_RECV_CSCOV,
+        #endif // LWIP_UDP
             send_lowat = SO_SNDLOWAT,
             recive_lowat = SO_RCVLOWAT,
             send_timeout = SO_SNDTIMEO,
@@ -79,10 +92,21 @@ namespace metronome {
             commected_timeout = SO_CONTIMEO,
             no_check = SO_NO_CHECK,
             bind_device = SO_BINDTODEVICE,
+            broadcast = SO_BROADCAST,
+            keepalive = SO_KEEPALIVE,
+
+
 
             add_membership = IP_ADD_MEMBERSHIP, //  3
             drop_membership = IP_DROP_MEMBERSHIP,
         };
+        /*enum class socket_errors : int {
+            fault = EFAULT,
+            oplen_invalid = EINVAL,
+            Unknown = ENOPROTOOPT,
+            invalid_socket = ENOTSOCK,
+            nvfds = EBADF
+        };*/
     public:
         using protocol_type = protocol;
         using protocol_family = address_family;
@@ -111,13 +135,20 @@ namespace metronome {
         void set_send_timeout(int timeout);
 
         bool bind(ip4_endpoint local_ep);
-        bool bind(int port);
-        bool bind(ip4_address ip, unsigned int port);
+        bool bind(const unsigned int& port);
+        bool bind(ip4_address ip, const unsigned int& port);
 
         //bool poll(int msec, select_mode mode );
 
         int get_last_error() { return m_iLastError; }
+
+        int get_handle() { return m_iHandle; }
+
+        operator int () { return m_iHandle; }
     public:
+        bool get_peername(ip4_endpoint& endpoint);
+        bool get_peername(ip4_address& strPeerAddress, uint16_t& iPeerPort);
+
         int set_options(const socket_option_level& opt, const socket_option_name& name, int value);
         int set_options(const socket_option_level& opt, const socket_option_name& name, bool value);
         int set_options(const socket_option_level& opt, const socket_option_name& name, void* value, uint32_t size);
@@ -178,8 +209,8 @@ namespace metronome {
         using socket_type = typename socket::socket_type;
         using protocol_type = typename socket::protocol_type;
 
-        dgram_socket(const address_family& fam = address_family::InterNetworkV4, bool lite = false)
-            : socket(fam,  socket_type::dgram, lite ? protocol_type::udp_lite :  protocol_type::unspec) { }
+        dgram_socket(const address_family& fam = address_family::InterNetworkV4)
+            : socket(fam,  socket_type::dgram, protocol_type::unspec) { }
 
         int send_to(char* buffer, int size, ip4_endpoint* ep, socket_flags socketFlags  = socket_flags::None)
             { return send_to(buffer, 0, size, socketFlags, ep); }
@@ -189,13 +220,40 @@ namespace metronome {
             { return recive_from(buffer, 0, size, socketFlags, ep); }
         int recive_from(char* buffer, int offset, int size, socket_flags socketFlags, ip4_endpoint* ep);
 
+        void set_nocheak(bool value);
+        bool get_nocheak();
+
         bool bind_multicast(ip4_endpoint local_ep);
-        bool bind_multicast(ip4_address ip, unsigned int port);
+        bool bind_multicast(ip4_address ip, const unsigned int& port);
     protected:
         dgram_socket(handle_type& hndl, ip4_endpoint* endp = nullptr)
             : socket(hndl, endp) { }
+        dgram_socket(const address_family& fam, const protocol_type& protocol)
+            : socket(fam,  socket_type::dgram, protocol) { }
     private:
         ip4_address m_ipMultiCast;
+    };
+
+    class dgram_socket_lite : public dgram_socket {
+    public:
+        using handle_type = int;
+        using socket_flags = typename socket::socket_flags;
+        using socket_type = typename socket::socket_type;
+        using protocol_type = typename socket::protocol_type;
+
+        dgram_socket_lite(const address_family& fam = address_family::InterNetworkV4)
+            : dgram_socket(fam, protocol_type::udp_lite) { }
+
+
+#if LWIP_UDP && LWIP_UDPLITE
+        //UDPLITE_SEND_CSCOV
+        void set_send_coverage(uint8_t val);
+        uint8_t get_send_coverage();
+
+        // UDPLITE_RECV_CSCOV
+        void set_recive_coverage(uint8_t val);
+        uint8_t get_recive_coverage();
+#endif // LWIP_UDP
     };
 }
 #endif // METRONOME_SOCKET_H

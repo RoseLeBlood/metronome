@@ -1,9 +1,10 @@
 #include "audio_network_buffer.h"
 #include <cstring>
+#include "config.h"
 
 namespace metronome {
     audio_network_buffer::audio_network_buffer() {
-        m_buffer = rb_create(sizeof(char*), 250);
+        m_buffer = rb_create(sizeof(char*), METRONOME_RINGBUFFER_SIZE);
     }
 
     mn::size_t audio_network_buffer::read_audio(char* buffer, mn::size_t data_size) {

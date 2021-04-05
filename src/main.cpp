@@ -45,10 +45,12 @@ void start_mdns_service() {
 }
 #endif // METRONOME_MDNS_ENABLE
 
+#include "audio_out_interface.h"
+
 metronome::audio_network_buffer __gl_buffer;
 metronome::dram_task* __gl_main_task;
 metronome::ip4_endpoint __gl_main_enpoint(METRONOME_IPV4_ADDRESS_ANY, METRONOME_RECIVER_UDP_PORT);
-
+metronome::audio_out_interface __gl_interface;
 extern "C" void app_main() {
     ESP_LOGI("main", "[APP] Metronome 0.4 Startup..");
     ESP_LOGI("main", "[APP] Free memory: %d bytes", esp_get_free_heap_size());
@@ -72,7 +74,23 @@ extern "C" void app_main() {
 
 
     __gl_main_task = new metronome::dram_task(__gl_buffer, __gl_main_enpoint, false, true);
+    __gl_main_task->start(PRO_CPU_NUM);
 
-    __gl_main_task->start(1);
-    for(;;) ;
+    if(!__gl_interface.create(metronome::audio_out_interface::device::sgtl5000, false)) {
+		ESP_LOGE("main", "can create the output devive - halt");
+		while(true) ;
+    }
+
+    mn::task_t::sleep(3);
+
+    char buffer[METRONOME_ADF_BUFFER_SEND] = {0};
+	size_t read = 0;
+
+    while(true) {
+		read = __gl_buffer.read_audio(buffer, METRONOME_ADF_BUFFER_SEND);
+		__gl_interface.write(buffer, 0, read);
+
+		mn::task_t::usleep(1);
+    }
+
 }

@@ -121,11 +121,42 @@ namespace metronome {
 
         return true;
     }
-    bool socket::bind(int port) {
+    bool socket::bind(const unsigned int& port) {
         return bind(ip4_endpoint(METRONOME_IPV4_ADDRESS_ANY, port) );
     }
-    bool socket::bind(ip4_address ip, unsigned int port) {
+    bool socket::bind(ip4_address ip, const unsigned int& port) {
         return bind(ip4_endpoint(ip, port) );
+    }
+    bool socket::get_peername(ip4_address& ipPeerAddress, uint16_t& iPeerPort) {
+        bool _ret = false;
+        struct sockaddr_in stPeer;
+        memset(&stPeer, 0, sizeof(struct sockaddr));
+        socklen_t iLen = sizeof(sockaddr);
+
+        m_iLastError = getpeername(m_iHandle, (struct sockaddr *)&stPeer, &iLen);
+        if(m_iLastError != 0) {
+            ESP_LOGE("socket", "could not getpeername: %d", errno);
+        } else {
+            ipPeerAddress = ip4_address(stPeer.sin_addr.s_addr);
+            iPeerPort = stPeer.sin_port;
+            _ret = true;
+        }
+        return _ret;
+    }
+    bool socket::get_peername(ip4_endpoint& endpoint) {
+        bool _ret = false;
+        struct sockaddr_in stPeer;
+        memset(&stPeer, 0, sizeof(struct sockaddr));
+        socklen_t iLen = sizeof(sockaddr);
+
+        m_iLastError = getpeername(m_iHandle, (struct sockaddr *)&stPeer, &iLen);
+        if(m_iLastError != 0) {
+            ESP_LOGE("socket", "could not getpeername: %d", errno);
+        } else {
+            endpoint = ip4_endpoint(ip4_address(stPeer.sin_addr.s_addr), stPeer.sin_port);
+            _ret = true;
+        }
+        return _ret;
     }
 //---------------------UDP DataGram ---------------------------------------------------------------
     bool dgram_socket::bind_multicast(ip4_endpoint local_ep) {
@@ -145,7 +176,7 @@ namespace metronome {
         }
         return _retBool;
     }
-    bool dgram_socket::bind_multicast(ip4_address ip, unsigned int port) {
+    bool dgram_socket::bind_multicast(ip4_address ip, const unsigned int& port) {
         return bind_multicast(ip4_endpoint(ip, port));
     }
 
@@ -191,6 +222,36 @@ namespace metronome {
                       &addrlen );
         return m_iLastError;
     }
+    void dgram_socket::set_nocheak(bool value) {
+        set_options(socket::option_level::socket, socket::option_name::no_check, value);
+    }
+    bool dgram_socket::get_nocheak() {
+        return socket::get_option_bool(socket::option_level::socket, socket::option_name::no_check);
+    }
+
+//---------------------DATAGRAM LITE ------------------------------------------------------------
+
+#if LWIP_UDP && LWIP_UDPLITE
+    //UDPLITE_SEND_CSCOV
+    void dgram_socket_lite::set_send_coverage(uint8_t val) {
+        set_options(socket::option_level::udp_lite,
+                           socket::option_name::udplite_send_cscov,
+                           static_cast<int>(val) );
+    }
+    uint8_t dgram_socket_lite::get_send_coverage() {
+        return get_option_int(socket::option_level::udp_lite, socket::option_name::udplite_send_cscov);
+    }
+
+    // UDPLITE_RECV_CSCOV
+    void dgram_socket_lite::set_recive_coverage(uint8_t val) {
+        set_options(socket::option_level::udp_lite,
+                           socket::option_name::udplite_recv_cscov,
+                           static_cast<int>(val) );
+    }
+    uint8_t dgram_socket_lite::get_recive_coverage() {
+        return get_option_int(socket::option_level::udp_lite, socket::option_name::udplite_recv_cscov);
+    }
+#endif // LWIP_UDP
 //---------------------TCP STREAM ---------------------------------------------------------------
 
     int stream_socket::send(char* buffer, int offset, int size, socket_flags socketFlags) {

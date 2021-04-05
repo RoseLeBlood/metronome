@@ -4,26 +4,31 @@
 
 namespace metronome {
 
-    udp_client::udp_client(ip4_address address, int port)
-            : udp_client(ip4_endpoint(address, port)) {}
+    udp_client::udp_client(ip4_address address, int port, bool use_lite)
+            : udp_client(ip4_endpoint(address, port), use_lite) {}
 
-    udp_client::udp_client(ip4_endpoint endpoint)
+    udp_client::udp_client(ip4_endpoint endpoint, bool use_lite)
         : m_dramSocket(nullptr), m_ipEndpoint(endpoint),
         m_ipReciveEndpoint(endpoint), m_bIsMulticast(false),
-        m_bIsReuseAddress(false), m_bIsConnected(false) { }
+        m_bIsReuseAddress(false), m_bIsConnected(false), m_bUseLite(use_lite) { }
 
-    dgram_socket* udp_client::create_socket(bool use_lite) {
-        return new dgram_socket(address_family::InterNetworkV4, use_lite);
+    dgram_socket* udp_client::create_socket() {
+        dgram_socket* _socket = nullptr;
+
+        if(!m_bUseLite) _socket = new dgram_socket(address_family::InterNetworkV4);
+        else _socket = new dgram_socket_lite(address_family::InterNetworkV4);
+
+        return _socket;
     }
     void udp_client::set_reuse_address(bool is) {
         m_bIsReuseAddress = is;
         m_dramSocket->set_options(socket::option_level::socket, socket::option_name::reuse_addr, m_bIsReuseAddress);
     }
 
-    bool udp_client::connect(bool use_lite) {
+    bool udp_client::connect() {
         if(m_bIsConnected ) return false;
-        m_bUseLite = use_lite;
-        m_dramSocket = create_socket(use_lite);
+
+        m_dramSocket = create_socket();
         if(m_dramSocket == nullptr) return false;
 
         m_dramSocket->set_options(socket::option_level::socket, socket::option_name::reuse_addr, m_bIsReuseAddress);
@@ -31,7 +36,7 @@ namespace metronome {
         on_connecting();
 
         if(m_bIsMulticast) {
-            m_bIsConnected = m_dramSocket->bind(m_ipEndpoint.get_port());
+            m_bIsConnected = m_dramSocket->bind(ip4_endpoint(METRONOME_IPV4_ADDRESS_ANY, m_ipEndpoint.get_port()) );
         } else {
             m_bIsConnected = m_dramSocket->bind(m_ipEndpoint);
         }
@@ -40,8 +45,6 @@ namespace metronome {
             m_ipReciveEndpoint = ip4_endpoint(METRONOME_IPV4_ADDRESS_ANY, 0);
 
         #ifdef METRONOME_DEBUG
-            m_bytesPending = 0;
-            m_bytesSending = 0;
             m_bytesSend = 0;
             m_bytesReceived = 0;
             m_dRamSend = 0;
@@ -70,7 +73,7 @@ namespace metronome {
     }
     bool udp_client::reconnect() {
         if (!disconnect()) return false;
-        return connect(m_bUseLite);
+        return connect();
     }
     void udp_client::setup_multicast(bool is) {
         m_bIsReuseAddress = is;

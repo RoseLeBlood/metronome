@@ -172,8 +172,10 @@
 			<Add directory="/home/ambersophia/.platformio/packages/toolchain-xtensa32/lib/gcc/xtensa-esp32-elf/8.4.0/include" />
 			<Add directory="/home/ambersophia/.platformio/packages/toolchain-xtensa32/xtensa-esp32-elf/include" />
 		</Compiler>
+		<Unit filename="Makefile" />
 		<Unit filename="include/audio_chunk.h" />
 		<Unit filename="include/audio_network_buffer.h" />
+		<Unit filename="include/audio_out_interface.h" />
 		<Unit filename="include/basic_wifi.h" />
 		<Unit filename="include/basic_wifi_ap.h" />
 		<Unit filename="include/config.h" />
@@ -183,14 +185,17 @@
 		<Unit filename="include/ip_address.h" />
 		<Unit filename="include/ip_endpoint.h" />
 		<Unit filename="include/ringbuf.h" />
+		<Unit filename="include/sgtl5000_diver.h" />
 		<Unit filename="include/socket.h" />
 		<Unit filename="include/udp_client.h" />
-		<Unit filename="make.log" />
+		<Unit filename="include/udp_server.h" />
+		<Unit filename="partitions.csv" />
 		<Unit filename="platformio.ini" />
 		<Unit filename="sdkconfig" />
 		<Unit filename="src/CMakeLists.txt" />
 		<Unit filename="src/audio_chunk.cpp" />
 		<Unit filename="src/audio_network_buffer.cpp" />
+		<Unit filename="src/audio_out_interface.cpp" />
 		<Unit filename="src/basic_wifi.cpp" />
 		<Unit filename="src/basic_wifi_ap.cpp" />
 		<Unit filename="src/dram_task.cpp" />
@@ -202,8 +207,20 @@
 		<Unit filename="src/ringbuf.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="src/sgtl5000_diver.cpp" />
 		<Unit filename="src/socket.cpp" />
 		<Unit filename="src/udp_client.cpp" />
-		<Extensions />
+		<Unit filename="src/udp_server.cpp" />
+		<Extensions>
+			<DoxyBlocks>
+				<comment_style block="4" line="3" />
+				<doxyfile_project />
+				<doxyfile_build />
+				<doxyfile_warnings />
+				<doxyfile_output />
+				<doxyfile_dot />
+				<general />
+			</DoxyBlocks>
+		</Extensions>
 	</Project>
 </CodeBlocks_project_file>

@@ -6,17 +6,20 @@ namespace metronome {
 
     class ip4_endpoint {
     public:
-        ip4_endpoint(const ip4_address& ip, const unsigned int& port)
+        ip4_endpoint(const uint16_t& port = 0)
+            : ip4_endpoint(METRONOME_IPV4_ADDRESS_ANY, port) { }
+
+        ip4_endpoint(const ip4_address& ip, const uint16_t& port)
             :  m_iPort(8289), m_ipAdress(ip)  {
             if(port < 9999) m_iPort = port;
         }
         ip4_endpoint(const ip4_endpoint& pOther)
             : m_iPort(pOther.m_iPort), m_ipAdress(pOther.m_ipAdress) { }
 
-        unsigned int get_port()             { return m_iPort; }
-        ip4_address get_ip()                { return m_ipAdress; }
+        uint16_t get_port()             { return m_iPort; }
+        ip4_address get_ip()             { return m_ipAdress; }
 
-        void set_port(unsigned int  port) {
+        void set_port(const uint16_t& port) {
             if(port < 9999) m_iPort = port;
         }
 
@@ -34,7 +37,7 @@ namespace metronome {
             return *this;
         }
     private:
-        unsigned int m_iPort;
+        uint16_t m_iPort;
         ip4_address m_ipAdress;
     };
 }

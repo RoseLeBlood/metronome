@@ -6,10 +6,10 @@
 namespace metronome {
     class udp_client {
     public:
-        udp_client(ip4_address address, int port);
-        udp_client(ip4_endpoint endpoint);
+        udp_client(ip4_address address, int port, bool use_lite);
+        udp_client(ip4_endpoint endpoint, bool use_lite);
 
-        virtual bool connect(bool use_lite);
+        virtual bool connect();
         virtual bool disconnect();
         virtual bool reconnect();
 
@@ -53,7 +53,7 @@ namespace metronome {
         virtual void on_joinmulticast_group(const ip4_address& ip) { }
         virtual void on_leftmulticast_group(const ip4_address& ip) { }
     protected:
-        dgram_socket* create_socket(bool use_lite = false);
+        dgram_socket* create_socket();
     protected:
         dgram_socket* m_dramSocket;
         ip4_endpoint m_ipEndpoint;

@@ -19,7 +19,6 @@ namespace metronome {
         void parse_pkg(audio_chunk_net_paket* pkg);
     private:
         ip4_address m_ip;
-        bool m_bIsudpLite;
         audio_network_buffer& m_bufferRef;
         udp_client *m_udpClient;
     };
